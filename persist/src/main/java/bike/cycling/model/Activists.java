@@ -4,16 +4,40 @@ package bike.cycling.model;
  * 官方活动实体
  */
 
+import com.sun.istack.internal.NotNull;
+
+import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by DELL on 2017/4/25.
  */
+@Entity
 public class Activists {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
+
+    @NotNull
+    @Column(nullable = false)
     protected String title;//标题
+
+    @NotNull
+    @Column(nullable = false)
     protected String bannerPath;//标题图
-    protected Comment comments;//评论
+
+    @OneToMany
+    protected Set<Comment> comments = new HashSet<>();//评论
+
+    @NotNull
+    @Column(nullable = false)
     protected String path;//地址
+
+    @NotNull
+    @Column(nullable = false)
     protected Date time;//时间
 
     public String getTitle() {
@@ -32,14 +56,6 @@ public class Activists {
         this.bannerPath = bannerPath;
     }
 
-    public Comment getComments() {
-        return comments;
-    }
-
-    public void setComments(Comment comments) {
-        this.comments = comments;
-    }
-
     public String getPath() {
         return path;
     }
@@ -54,5 +70,33 @@ public class Activists {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Activists activists = (Activists) o;
+
+        return id != null ? id.equals(activists.id) : activists.id == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }

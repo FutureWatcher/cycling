@@ -4,19 +4,44 @@ package bike.cycling.model;
  * 动态实体
  */
 
+import com.sun.istack.internal.NotNull;
+
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 /**
  * Created by DELL on 2017/4/26.
  */
+@Entity
 public class TravelNotes {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
+
+    @NotNull
+    @Column(nullable = false)
     protected String title;//标题
-    protected List<String> titleImages;// 展示图
+
+    @ManyToOne
+    @NotNull
     protected User belongUser;//发布者
-    protected Cycling belongCycling;//属于骑行活动
-    protected Set<Comment> comments;//评论
+
+    @OneToMany
+    protected Set<Comment> comments = new HashSet<>();//评论
+
+    @Column(nullable = false)
+    @NotNull
     protected String content;//内容
+
+    @NotNull
+    protected String contentImg;
+
+    public Long getId() {
+        return id;
+    }
 
     public String getTitle() {
         return title;
@@ -26,28 +51,12 @@ public class TravelNotes {
         this.title = title;
     }
 
-    public List<String> getTitleImages() {
-        return titleImages;
-    }
-
-    public void setTitleImages(List<String> titleImages) {
-        this.titleImages = titleImages;
-    }
-
     public User getBelongUser() {
         return belongUser;
     }
 
     public void setBelongUser(User belongUser) {
         this.belongUser = belongUser;
-    }
-
-    public Cycling getBelongCycling() {
-        return belongCycling;
-    }
-
-    public void setBelongCycling(Cycling belongCycling) {
-        this.belongCycling = belongCycling;
     }
 
     public Set<Comment> getComments() {
@@ -64,5 +73,13 @@ public class TravelNotes {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getContentImg() {
+        return contentImg;
+    }
+
+    public void setContentImg(String contentImg) {
+        this.contentImg = contentImg;
     }
 }

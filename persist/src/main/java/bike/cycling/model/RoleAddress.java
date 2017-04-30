@@ -4,6 +4,8 @@ package bike.cycling.model;
  * 角色地址组件
  */
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.Embeddable;
 
 /**
@@ -12,8 +14,13 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class RoleAddress {
 
+    @NotNull
     protected String province;//省
+
+    @NotNull
     protected String city;//市
+
+    @NotNull
     protected String county;//县/区
 
     public String getProvince() {

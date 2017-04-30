@@ -12,13 +12,14 @@ import java.util.Date;
 /**
  * Created by DELL on 2017/4/25.
  */
-public class Messages {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Messages {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     protected Long id;
 
-    @NotNull
-    @Column(nullable = false)
+    @ManyToOne
     protected User sender;//发送者
 
     @NotNull

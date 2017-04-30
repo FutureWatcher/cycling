@@ -11,5 +11,22 @@
 
     <artifactId>persist</artifactId>
 
+    <properties>
+        <mysql.version>5.1.41</mysql.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.0.1.Final</version>
+        </dependency>
+    </dependencies>
+
 
 </project>

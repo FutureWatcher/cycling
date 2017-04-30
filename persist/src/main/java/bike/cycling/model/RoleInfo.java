@@ -17,13 +17,16 @@ public class RoleInfo {
     @Column(nullable = false)
     protected String nikeName;//匿名
 
+    @NotNull
     protected String realName;//真实姓名
 
     @Column(nullable = false)
     protected String sex;//性别
 
+    @NotNull
     protected String myDescription;//自述
 
+    @NotNull
     protected String telephone;//电话
 
     public String getNikeName() {

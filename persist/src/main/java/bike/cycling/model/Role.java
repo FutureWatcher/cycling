@@ -2,11 +2,9 @@ package bike.cycling.model;
 
 import com.sun.istack.internal.NotNull;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 /**
  * 角色抽象类
@@ -15,9 +13,11 @@ import java.util.Set;
 /**
  * Created by DELL on 2017/4/25.
  */
-public class Role {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     protected Long id;
 
     @NotNull
@@ -27,9 +27,12 @@ public class Role {
     @Column(nullable = false)
     protected String password;//密码
 
+    @NotNull
+    @Column(nullable = false)
+    protected String picturesPath;//头像
 
-    protected Set<String> picturesPaths;//头像
-
+    @NotNull
+    @Column(nullable = false)
     protected Date lastOnline;//最后在线时间
 
     @Column(nullable = false)
@@ -51,12 +54,12 @@ public class Role {
         this.password = password;
     }
 
-    public Set<String> getPicturesPaths() {
-        return picturesPaths;
+    public String getPicturesPaths() {
+        return picturesPath;
     }
 
-    public void setPicturesPaths(Set<String> picturesPaths) {
-        this.picturesPaths = picturesPaths;
+    public void setPicturesPaths(String picturesPath) {
+        this.picturesPath = picturesPath;
     }
 
     public Date getLastOnline() {

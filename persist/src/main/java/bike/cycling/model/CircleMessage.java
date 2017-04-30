@@ -4,9 +4,9 @@ package bike.cycling.model;
  * 圈消息实体
  */
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.sun.istack.internal.NotNull;
+
+import javax.persistence.*;
 
 /**
  * Created by DELL on 2017/4/25.
@@ -14,6 +14,7 @@ import javax.persistence.Id;
 @Entity
 public class CircleMessage extends Messages{
 
+    @ManyToOne
     protected Circle receiverCircle;//接收圈子
 
     public Circle getReceiverCircle() {
