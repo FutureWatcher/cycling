@@ -7,6 +7,7 @@ package bike.cycling.model;
 import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,11 +26,13 @@ public class TravelNotes {
     @Column(nullable = false)
     protected String title;//标题
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     protected User belongUser;//发布者
 
-    @OneToMany
+    @ElementCollection
+    @CollectionTable(name = "travel_comment")
+    @OrderBy("countNum DESC")
     protected Set<Comment> comments = new HashSet<>();//评论
 
     @Column(nullable = false)
@@ -38,6 +41,16 @@ public class TravelNotes {
 
     @NotNull
     protected String contentImg;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    protected Date time;
+
+    @Column(nullable = false)
+    protected int order;
+
+    @Version
+    protected Long version;
 
     public Long getId() {
         return id;
@@ -81,5 +94,28 @@ public class TravelNotes {
 
     public void setContentImg(String contentImg) {
         this.contentImg = contentImg;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TravelNotes that = (TravelNotes) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        return title != null ? title.equals(that.title) : that.title == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        return result;
     }
 }

@@ -15,25 +15,24 @@ import java.util.Set;
 @Entity
 public class User extends Role {
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     protected Set<User> friends;//好友
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     protected Set<Circle> circles;//加入的骑行圈
 
     protected Rank rank;//排名
 
-    @NotNull
     @Column(nullable = false)
     protected UserSetting setting;//设置
 
-    @OneToMany
-    protected Set<SingleMessages> messages = new HashSet<>();//聊天记录
+    @OneToMany(mappedBy = "receiver" , fetch = FetchType.LAZY)
+    protected Set<SingleMessages> messages = new HashSet<>();//接收的聊天记录
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     protected Set<Cycling> attendedAct = new HashSet<>();//参加过的骑行
 
-    @OneToMany
+    @OneToMany(mappedBy = "belongUser" , fetch = FetchType.LAZY)
     protected Set<TravelNotes> travelNotes = new HashSet<>();//动态
 
     public Set<User> getFriends() {

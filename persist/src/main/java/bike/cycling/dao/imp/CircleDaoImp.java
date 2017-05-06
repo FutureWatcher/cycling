@@ -1,13 +1,16 @@
 package bike.cycling.dao.imp;
 
 import bike.cycling.dao.service.CircleDao;
+import bike.cycling.model.Circle;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by MrH on 2017/4/25.
  */
-public class CircleDaoImp extends GenericDaoImp implements CircleDao {
+@Repository
+public class CircleDaoImp extends GenericDaoImp<Circle,Long> implements CircleDao {
 
-    public CircleDaoImp(Class entityClass) {
-        super(entityClass);
+    public CircleDaoImp() {
+        super(Circle.class);
     }
 }

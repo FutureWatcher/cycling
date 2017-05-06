@@ -29,6 +29,7 @@ public class RoleInfo {
     @NotNull
     protected String telephone;//电话
 
+
     public String getNikeName() {
         return nikeName;
     }

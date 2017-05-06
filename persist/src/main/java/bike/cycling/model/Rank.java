@@ -6,6 +6,7 @@ package bike.cycling.model;
 
 import com.sun.istack.internal.NotNull;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -13,18 +14,14 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class Rank {
+
     @NotNull
-    protected String name;//排名段位
-    @NotNull
+    @Column(nullable = false)
     protected int point;//分数
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    @NotNull
+    @Column(nullable = false)
+    protected int state;
 
     public int getPoint() {
         return point;
@@ -32,5 +29,13 @@ public class Rank {
 
     public void setPoint(int point) {
         this.point = point;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }

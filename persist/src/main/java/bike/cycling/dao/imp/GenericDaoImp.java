@@ -1,6 +1,7 @@
 package bike.cycling.dao.imp;
 
 import bike.cycling.dao.service.GenericDAO;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.LockModeType;
@@ -13,6 +14,7 @@ import java.util.List;
 /**
  * Created by MrH on 2017/4/25.
  */
+@Transactional
 public abstract class GenericDaoImp<T,ID> implements GenericDAO<T,ID> {
 
     @PersistenceContext

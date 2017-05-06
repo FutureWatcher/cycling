@@ -11,15 +11,11 @@ import java.util.Date;
 /**
  * Created by DELL on 2017/4/26.
  */
-@Entity
+@Embeddable
 public class Comment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
-
-    @NotNull
     @ManyToOne
+    @JoinColumn(nullable = false , name = "promulgator_id")
     protected  User promulgator;//评论者
 
     @NotNull
@@ -29,6 +25,10 @@ public class Comment {
     @NotNull
     @Column(nullable = false)
     protected Date time;//时间
+
+    @NotNull
+    @Column(nullable= false)
+    protected Long countNum; //点赞数
 
     public User getPromulgator() {
         return promulgator;
@@ -54,8 +54,13 @@ public class Comment {
         this.time = time;
     }
 
-    public Long getId() {
-        return id;
+
+    public Long getCountNum() {
+        return countNum;
+    }
+
+    public void setCountNum(Long countNum) {
+        this.countNum = countNum;
     }
 
     @Override
@@ -65,12 +70,17 @@ public class Comment {
 
         Comment comment = (Comment) o;
 
-        return id != null ? id.equals(comment.id) : comment.id == null;
+        if (promulgator != null ? !promulgator.equals(comment.promulgator) : comment.promulgator != null) return false;
+        if (content != null ? !content.equals(comment.content) : comment.content != null) return false;
+        return time != null ? time.equals(comment.time) : comment.time == null;
 
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        int result = promulgator != null ? promulgator.hashCode() : 0;
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (time != null ? time.hashCode() : 0);
+        return result;
     }
 }

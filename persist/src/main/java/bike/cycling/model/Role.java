@@ -31,12 +31,17 @@ public abstract class Role {
     @Column(nullable = false)
     protected String picturesPath;//头像
 
-    @NotNull
-    @Column(nullable = false)
     protected Date lastOnline;//最后在线时间
 
     @Column(nullable = false)
     protected Date joinDate;//创建时间
+
+    protected RoleInfo roleInfo;
+
+    protected RoleAddress roleAddress;
+
+    @Version
+    protected Long version;
 
     public String getRoleName() {
         return roleName;
@@ -52,14 +57,6 @@ public abstract class Role {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPicturesPaths() {
-        return picturesPath;
-    }
-
-    public void setPicturesPaths(String picturesPath) {
-        this.picturesPath = picturesPath;
     }
 
     public Date getLastOnline() {
@@ -80,6 +77,34 @@ public abstract class Role {
 
     public Long getId() {
         return id;
+    }
+
+    public String getPicturesPath() {
+        return picturesPath;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public RoleInfo getRoleInfo() {
+        return roleInfo;
+    }
+
+    public void setRoleInfo(RoleInfo roleInfo) {
+        this.roleInfo = roleInfo;
+    }
+
+    public RoleAddress getRoleAddress() {
+        return roleAddress;
+    }
+
+    public void setRoleAddress(RoleAddress roleAddress) {
+        this.roleAddress = roleAddress;
+    }
+
+    public void setPicturesPath(String picturesPath) {
+        this.picturesPath = picturesPath;
     }
 
     @Override

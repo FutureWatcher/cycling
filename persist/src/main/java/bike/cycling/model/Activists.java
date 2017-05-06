@@ -29,7 +29,9 @@ public class Activists {
     @Column(nullable = false)
     protected String bannerPath;//标题图
 
-    @OneToMany
+    @ElementCollection
+    @CollectionTable(name = "activitys_comment")
+    @OrderBy("countNum DESC")
     protected Set<Comment> comments = new HashSet<>();//评论
 
     @NotNull
@@ -39,6 +41,9 @@ public class Activists {
     @NotNull
     @Column(nullable = false)
     protected Date time;//时间
+
+    @Version
+    protected Long version;
 
     public String getTitle() {
         return title;
@@ -82,6 +87,10 @@ public class Activists {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    public Long getVersion() {
+        return version;
     }
 
     @Override

@@ -20,16 +20,23 @@ public class Cycling {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     protected User leader;//领头人/发起人
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     protected Set<User> participator = new HashSet<>();//参与者
 
     @NotNull
     @Column(nullable = false)
     protected String name;//活动
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    protected Date createTime;
+
+    @Column(nullable = false)
+    protected int order;
 
 
     @AttributeOverrides({
@@ -54,6 +61,9 @@ public class Cycling {
     @NotNull
     @Column(nullable = false)
     protected int state;//状态
+
+    @Version
+    protected Long version;
 
     public User getLeader() {
         return leader;
@@ -113,6 +123,26 @@ public class Cycling {
 
     public Long getId() {
         return id;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 
     @Override

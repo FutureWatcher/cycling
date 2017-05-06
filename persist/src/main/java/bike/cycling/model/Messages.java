@@ -35,6 +35,9 @@ public abstract class Messages {
     @Column(nullable = false)
     protected Date time;//时间
 
+    @Version
+    protected Long version;
+
     public User getSender() {
         return sender;
     }
@@ -69,6 +72,10 @@ public abstract class Messages {
 
     public Long getId() {
         return id;
+    }
+
+    public Long getVersion() {
+        return version;
     }
 
     @Override

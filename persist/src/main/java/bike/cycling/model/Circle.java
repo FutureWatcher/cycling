@@ -7,6 +7,7 @@ package bike.cycling.model;
 import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,24 +20,34 @@ public class Circle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     protected Set<User> circlemate = new HashSet<>();//圈友
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     protected User circleBoss;
 
-    @OneToMany
+    @OneToMany(mappedBy = "receiverCircle")
     protected Set<CircleMessage> messages = new HashSet<>();//消息
 
     @NotNull
     @Column(nullable = false)
     protected String portrait;//头像
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     protected Set<Cycling> circleCylings = new HashSet<>();//骑行活动
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    protected Date time;
+
+    @Column(nullable = false)
+    protected int order;
 
     @NotNull
     protected String declaration;//骑行宣言
+
+    @Version
+    protected Long version;
 
     public Long getId() {
         return id;
@@ -88,6 +99,26 @@ public class Circle {
 
     public void setDeclaration(String declaration) {
         this.declaration = declaration;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 
     @Override
