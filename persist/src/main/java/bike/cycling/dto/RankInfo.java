@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by MrH on 2017/5/2.
  */
-@Component
+
 public class RankInfo {
     private Long userId;
     private String nikeName;

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by MrH on 2017/5/3.
  */
-@Component
+
 public class UserRegisterInfo {
     private String loginName;
     private String nikeName;
@@ -13,6 +13,9 @@ public class UserRegisterInfo {
     private String password;
     private String imagePath;
     private String telephone;
+
+    public UserRegisterInfo() {
+    }
 
     public UserRegisterInfo(String loginName, String nikeName, String sex, String password, String imagePath, String telephone) {
         this.loginName = loginName;

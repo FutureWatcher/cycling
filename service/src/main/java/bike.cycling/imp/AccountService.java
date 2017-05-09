@@ -2,6 +2,7 @@ package bike.cycling.imp;
 
 import bike.cycling.constant.RankState;
 import bike.cycling.dao.imp.UserDaoImp;
+import bike.cycling.dao.service.UserDao;
 import bike.cycling.dto.RankInfo;
 import bike.cycling.dto.UserRegisterInfo;
 import bike.cycling.model.*;
@@ -9,8 +10,10 @@ import bike.cycling.service.AbsUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by MrH on 2017/5/6.
@@ -18,20 +21,27 @@ import java.util.List;
 @Service
 public class AccountService extends AbsUserService {
 
-    private UserDaoImp userDaoImp;
+
+    private UserDao userDaoImp;
 
     @Autowired
-    public void setUserDaoImp(UserDaoImp userDaoImp) {
+    public void setUserDaoImp(UserDao userDaoImp) {
         this.userDaoImp = userDaoImp;
     }
 
     @Override
     public boolean login(String loginName, String password) {
         boolean isLoginSuccess = false;
-        String selectPassword = userDaoImp.getUserPassWordByLoginName(loginName);
+        String selectPassword;
+        try {
+            selectPassword = userDaoImp.getUserPassWordByLoginName(loginName);
+        }catch (Exception e){
+            selectPassword = UUID.randomUUID().toString();
+        }
         if( selectPassword != null)
             if(password.equals(selectPassword))
                 isLoginSuccess = true;
+
         return isLoginSuccess ;
     }
 

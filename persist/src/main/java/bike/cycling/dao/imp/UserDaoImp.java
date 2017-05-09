@@ -6,6 +6,7 @@ import bike.cycling.dto.RankInfo;
 import bike.cycling.model.Rank;
 import bike.cycling.model.Role;
 import bike.cycling.model.User;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;

@@ -35,9 +35,6 @@ public class Cycling {
     @Column(nullable = false)
     protected Date createTime;
 
-    @Column(nullable = false)
-    protected int order;
-
 
     @AttributeOverrides({
             @AttributeOverride(name = "placeName", column = @Column(name = "origin_placeName" , nullable = false)),
@@ -137,13 +134,6 @@ public class Cycling {
         this.createTime = createTime;
     }
 
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
-    }
 
     @Override
     public boolean equals(Object o) {

@@ -22,10 +22,6 @@ public class TravelNotes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @NotNull
-    @Column(nullable = false)
-    protected String title;//标题
-
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     protected User belongUser;//发布者
@@ -46,22 +42,12 @@ public class TravelNotes {
     @Column(nullable = false)
     protected Date time;
 
-    @Column(nullable = false)
-    protected int order;
 
     @Version
     protected Long version;
 
     public Long getId() {
         return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public User getBelongUser() {
@@ -100,6 +86,14 @@ public class TravelNotes {
         return version;
     }
 
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -108,14 +102,14 @@ public class TravelNotes {
         TravelNotes that = (TravelNotes) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        return title != null ? title.equals(that.title) : that.title == null;
+        return belongUser != null ? belongUser.equals(that.belongUser) : that.belongUser == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (belongUser != null ? belongUser.hashCode() : 0);
         return result;
     }
 }

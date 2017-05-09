@@ -40,8 +40,6 @@ public class Circle {
     @Column(nullable = false)
     protected Date time;
 
-    @Column(nullable = false)
-    protected int order;
 
     @NotNull
     protected String declaration;//骑行宣言
@@ -113,13 +111,6 @@ public class Circle {
         this.time = time;
     }
 
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
-    }
 
     @Override
     public boolean equals(Object o) {

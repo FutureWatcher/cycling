@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by MrH on 2017/5/3.
  */
-@Component
+
 public class UserInfo {
     private String loginName;
     private String nikeName;
