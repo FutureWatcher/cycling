@@ -3,20 +3,37 @@ package bike.cycling.model;
  * 用户实体
  */
 
+import com.sun.istack.internal.NotNull;
+
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by DELL on 2017/4/25.
  */
+@Entity
 public class User extends Role {
+
+    @ManyToMany(fetch = FetchType.LAZY)
     protected Set<User> friends;//好友
+
+    @ManyToMany(fetch = FetchType.LAZY)
     protected Set<Circle> circles;//加入的骑行圈
-    protected Set<TravelNotes> dailyRecord;//动态
+
     protected Rank rank;//排名
+
+    @Column(nullable = false)
     protected UserSetting setting;//设置
-    protected Set<SingleMessages> messages;//聊天记录
-    protected Set<Cycling> attendedAct;//参加过的骑行
-    protected Set<TravelNotes> travelNotes;//动态
+
+    @OneToMany(mappedBy = "receiver" , fetch = FetchType.LAZY)
+    protected Set<SingleMessages> messages = new HashSet<>();//接收的聊天记录
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    protected Set<Cycling> attendedAct = new HashSet<>();//参加过的骑行
+
+    @OneToMany(mappedBy = "belongUser" , fetch = FetchType.LAZY)
+    protected Set<TravelNotes> travelNotes = new HashSet<>();//动态
 
     public Set<User> getFriends() {
         return friends;
@@ -32,14 +49,6 @@ public class User extends Role {
 
     public void setCircles(Set<Circle> circles) {
         this.circles = circles;
-    }
-
-    public Set<TravelNotes> getDailyRecord() {
-        return dailyRecord;
-    }
-
-    public void setDailyRecord(Set<TravelNotes> dailyRecord) {
-        this.dailyRecord = dailyRecord;
     }
 
     public Rank getRank() {

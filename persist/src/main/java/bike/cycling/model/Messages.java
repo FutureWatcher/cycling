@@ -4,16 +4,39 @@ package bike.cycling.model;
  * 消息抽象类
  */
 
+import com.sun.istack.internal.NotNull;
+
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by DELL on 2017/4/25.
  */
-public class Messages {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Messages {
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    protected Long id;
+
+    @ManyToOne
     protected User sender;//发送者
+
+    @NotNull
+    @Column(nullable = false)
     protected int type;//类型
+
+    @NotNull
+    @Column(nullable = false)
     protected String content;//内容
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @NotNull
+    @Column(nullable = false)
     protected Date time;//时间
+
+    @Version
+    protected Long version;
 
     public User getSender() {
         return sender;
@@ -45,5 +68,29 @@ public class Messages {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Messages messages = (Messages) o;
+
+        return id != null ? id.equals(messages.id) : messages.id == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }

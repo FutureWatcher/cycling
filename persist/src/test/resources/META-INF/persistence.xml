@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="bike_test">
+
+
+        <class>bike.cycling.model.Activists</class>
+        <class>bike.cycling.model.Admin</class>
+        <class>bike.cycling.model.Circle</class>
+        <class>bike.cycling.model.CircleMessage</class>
+        <class>bike.cycling.model.Comment</class>
+        <class>bike.cycling.model.Cycling</class>
+        <class>bike.cycling.model.Messages</class>
+        <class>bike.cycling.model.Place</class>
+        <class>bike.cycling.model.Rank</class>
+        <class>bike.cycling.model.Role</class>
+        <class>bike.cycling.model.RoleAddress</class>
+        <class>bike.cycling.model.RoleInfo</class>
+        <class>bike.cycling.model.SingleMessages</class>
+        <class>bike.cycling.model.TravelNotes</class>
+        <class>bike.cycling.model.User</class>
+        <class>bike.cycling.model.UserSetting</class>
+
+
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bike_test" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="123456" />
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
+        </properties>
+
+    </persistence-unit>
+
+</persistence>
