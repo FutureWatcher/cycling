@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.apache.tomcat:dbcp:RELEASE">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/dbcp/RELEASE/dbcp-RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/dbcp/RELEASE/dbcp-RELEASE-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/dbcp/RELEASE/dbcp-RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
