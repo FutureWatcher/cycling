@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/cycling.iml" filepath="$PROJECT_DIR$/.idea/cycling.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cycling.iml" filepath="$PROJECT_DIR$/cycling.iml" />
+      <module fileurl="file://E:\idea\cycling\.idea\cycling.iml" filepath="E:\idea\cycling\.idea\cycling.iml" />
       <module fileurl="file://$PROJECT_DIR$/frontweb/frontweb.iml" filepath="$PROJECT_DIR$/frontweb/frontweb.iml" />
       <module fileurl="file://$PROJECT_DIR$/persist/persist.iml" filepath="$PROJECT_DIR$/persist/persist.iml" />
       <module fileurl="file://$PROJECT_DIR$/service/service.iml" filepath="$PROJECT_DIR$/service/service.iml" />
